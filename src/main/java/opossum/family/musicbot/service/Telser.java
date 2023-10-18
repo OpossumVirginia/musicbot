@@ -11,7 +11,8 @@ public class Telser {
 
 
     /**
-     * This constructor allows ...
+     * This is a general constructor for the Telegram communication service.
+     * The purpose is to implement the functionality of communication between the app and the Telegram.
      *
      * @author opossum virginia
      * @since 18.10.23
