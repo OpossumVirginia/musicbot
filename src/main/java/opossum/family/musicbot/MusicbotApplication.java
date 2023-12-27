@@ -21,5 +21,7 @@ public class MusicbotApplication {
 		}
 	}
 
+	//TODO: add health endpoint to check from the outside - spring actuator or smth?
 
+	//TODO: some message when bot starts?
 }

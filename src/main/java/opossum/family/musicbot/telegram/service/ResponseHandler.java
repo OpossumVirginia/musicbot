@@ -18,7 +18,8 @@ public class ResponseHandler {
     private final Map<Long, UserState> chatStates;
 
     //TODO: add logging here!!!!
-
+    //TODO: add correlationID so that you can track one session from the /start to the /end
+    //TODO: add handling of the inputs unknown to the states - like when in type stuff before the /start
     public ResponseHandler(SilentSender sender, DBContext db) {
         this.sender = sender;
         chatStates = db.getMap(Constants.CHAT_STATES);

@@ -10,40 +10,43 @@
             </pattern>
         </encoder>
     </appender>
+    <!--  //TODO: logging into the stream/ELK/etc. also in json format
+    https://www.baeldung.com/java-application-logs-to-elastic-stack - dependency is there already
+    -->
 
-    <springProfile name="dev">
-        <root level="info">
-            <appender-ref ref="STDOUT" />
-        </root>
-    </springProfile>
+     <springProfile name="dev">
+         <root level="info">
+             <appender-ref ref="STDOUT" />
+         </root>
+     </springProfile>
 
-    <springProfile name="test">
-        <root level="info">
-            <appender-ref ref="STDOUT" />
-        </root>
-    </springProfile>
+     <springProfile name="test">
+         <root level="info">
+             <appender-ref ref="STDOUT" />
+         </root>
+     </springProfile>
 
-    <springProfile name="prod">
-        <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+     <springProfile name="prod">
+         <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
-            <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+             <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
 
-            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
-            </encoder>
+             <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                 <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
+             </encoder>
 
-            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}_%d{dd-MM-yyyy}.log</fileNamePattern>
-                <maxHistory>0</maxHistory>
-                <totalSizeCap>0</totalSizeCap>
-            </rollingPolicy>
-        </appender>
+             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                 <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}_%d{dd-MM-yyyy}.log</fileNamePattern>
+                 <maxHistory>0</maxHistory>
+                 <totalSizeCap>0</totalSizeCap>
+             </rollingPolicy>
+         </appender>
 
-        <root level="info">
-            <appender-ref ref="STDOUT" />
-            <appender-ref ref="SAVE-TO-FILE" />
-        </root>
+         <root level="info">
+             <appender-ref ref="STDOUT" />
+             <appender-ref ref="SAVE-TO-FILE" />
+         </root>
 
-    </springProfile>
+     </springProfile>
 
-</configuration>
+ </configuration>
